@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Item from "./Item";
 
-const CATEGORY_URL = "http://apolis-grocery.herokuapp.com/api/category";
+const CATEGORY_URL = "https://apolis-grocery.herokuapp.com/api/category";
 
 const Category = () => {
   const [categories, setCategories] = useState([]);

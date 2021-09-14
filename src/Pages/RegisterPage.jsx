@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const REGISTER_URL = "http://apolis-grocery.herokuapp.com/api/auth/register";
+const REGISTER_URL = "https://apolis-grocery.herokuapp.com/api/auth/register";
 
 const RegisterPage = ({ userInfo }) => {
   const [firstName, setFirstName] = useState("");

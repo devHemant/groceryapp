@@ -6,7 +6,7 @@ const Item = (props) => {
     <div className="col-sm-3">
       <div className="card">
         <img
-          src={`http://rjtmobile.com/grocery/images/${catImage}`}
+          src={`https://rjtmobile.com/grocery/images/${catImage}`}
           className="card-img-top"
           alt={catName}
           height="200px"

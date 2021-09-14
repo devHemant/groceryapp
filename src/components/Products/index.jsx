@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import ProductItem from "./ProductItem";
 
-const PRODUCT_URL = "http://apolis-grocery.herokuapp.com/api/products/cat/3";
+const PRODUCT_URL = "https://apolis-grocery.herokuapp.com/api/products/cat/3";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
