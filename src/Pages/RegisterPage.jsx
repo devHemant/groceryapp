@@ -4,7 +4,7 @@ import axios from "axios";
 
 const REGISTER_URL = "https://apolis-grocery.herokuapp.com/api/auth/register";
 
-const RegisterPage = ({ userInfo }) => {
+const RegisterPage = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -56,15 +56,6 @@ const RegisterPage = ({ userInfo }) => {
       });
     }
 
-    if (userInfo) {
-      if (userInfo.email === email) {
-        errorList.push({
-          errorType: "email is exist",
-          message:
-            "Email Id already exist, Please try with different Email Id.",
-        });
-      }
-    }
     setError(errorList);
     if (errorList.length === 0) {
       const signUpObject = {
@@ -77,7 +68,6 @@ const RegisterPage = ({ userInfo }) => {
         experience,
       };
       console.log("Form Submitted Successfully=>", signUpObject);
-      // localStorage.setItem("user", JSON.stringify(signUpObject));
       handleRegister(signUpObject);
     }
   };
@@ -122,8 +112,7 @@ const RegisterPage = ({ userInfo }) => {
         if (error === false) setSuccessMessage(message);
       })
       .catch((error) => {
-        const cError = { ...error };
-        const { message = "" } = cError.response.data;
+        const { message = "" } = error.response.data;
         const errorList = [];
         errorList.push({
           errorType: "register failed",
@@ -165,7 +154,6 @@ const RegisterPage = ({ userInfo }) => {
                       <strong>
                         <Link to="/login">Login</Link>
                       </strong>
-                      .
                     </div>
                   )}
                   <div className="row">

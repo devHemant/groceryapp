@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const LoginPage = ({ userInfo }) => {
+const LOGIN_URL = "https://apolis-grocery.herokuapp.com/api/auth/login";
+
+const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
+  const history = useHistory();
 
   const handleSignInSubmit = (e) => {
     e.preventDefault();
@@ -21,22 +26,23 @@ const LoginPage = ({ userInfo }) => {
         errorType: "Password Validation",
         message: "Please enter valid password",
       });
-    } else if (userInfo === null) {
-      errorList.push({
-        errorType: "Invalide Credential",
-        message: "Invalide Credential, Please try again.",
-      });
-    } else if (userInfo.email !== email) {
-      errorList.push({
-        errorType: "Invalide Credential",
-        message: "Invalide Credential, Please try again.",
-      });
-    } else if (userInfo.password !== password) {
-      errorList.push({
-        errorType: "Invalide Credential",
-        message: "Invalide Credential, Please try again.",
-      });
     }
+    //  else if (userInfo === null) {
+    //   errorList.push({
+    //     errorType: "Invalide Credential",
+    //     message: "Invalide Credential, Please try again.",
+    //   });
+    // } else if (userInfo.email !== email) {
+    //   errorList.push({
+    //     errorType: "Invalide Credential",
+    //     message: "Invalide Credential, Please try again.",
+    //   });
+    // } else if (userInfo.password !== password) {
+    //   errorList.push({
+    //     errorType: "Invalide Credential",
+    //     message: "Invalide Credential, Please try again.",
+    //   });
+    // }
     setError(errorList);
     if (errorList.length === 0) {
       const signInObject = {
@@ -44,9 +50,10 @@ const LoginPage = ({ userInfo }) => {
         password,
       };
       console.log("Signin successfully=>", signInObject);
-      localStorage.setItem("isLogin", JSON.stringify(true));
+      handleLogin(signInObject);
+      // localStorage.setItem("isLogin", JSON.stringify(true));
     } else {
-      localStorage.setItem("isLogin", JSON.stringify(false));
+      // localStorage.setItem("isLogin", JSON.stringify(false));
     }
   };
 
@@ -61,6 +68,28 @@ const LoginPage = ({ userInfo }) => {
         setPassword(value);
         break;
     }
+  };
+  const handleLogin = (data) => {
+    axios({
+      method: "post",
+      url: LOGIN_URL,
+      data,
+    })
+      .then((response) => {
+        const { user = {}, token = "" } = response.data;
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("token", JSON.stringify(token));
+        history.push("/");
+      })
+      .catch((error) => {
+        const { message = "" } = error.response.data;
+        const errorList = [];
+        errorList.push({
+          errorType: "login failed",
+          message,
+        });
+        setError(errorList);
+      });
   };
   return (
     <div className="row" id="signInBox">
