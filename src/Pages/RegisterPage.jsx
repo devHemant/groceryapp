@@ -146,7 +146,7 @@ const RegisterPage = ({ userInfo }) => {
                 <div className="col-lg-12">
                   <h4 className="text-center">
                     <Link to="/" className="text-decoration-none">
-                      Grocery App
+                      Grocery Store
                     </Link>
                   </h4>
                   {error.length > 0 && (

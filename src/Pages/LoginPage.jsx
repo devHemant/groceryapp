@@ -69,7 +69,7 @@ const LoginPage = ({ userInfo }) => {
           <div className="card-body">
             <h4 className="text-center">
               <Link to="/" className="text-decoration-none">
-                Grocery App
+                Grocery Store
               </Link>
             </h4>
 

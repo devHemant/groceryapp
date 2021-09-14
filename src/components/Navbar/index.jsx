@@ -6,7 +6,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
         <Link to="/" className="navbar-brand">
-          Grocery App{" "}
+          Grocery Store{" "}
         </Link>
 
         <button

@@ -8,6 +8,8 @@ const ProductPage = () => {
     <>
       <Navbar />
       <div className="container">
+        <h2 className="text-center"> All Products</h2>
+
         <div className="row">
           <div className="col-lg-3">
             <SubCategory />

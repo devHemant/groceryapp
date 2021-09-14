@@ -22,8 +22,8 @@ const SubCategory = () => {
     getSubCatgeory();
   }, []);
   return (
-    <div>
-      <ul className="list-group mt-3">
+    <div className="row">
+      <ul className="list-group mt-2">
         {subCategories.length > 0 &&
           subCategories.map((item, index) => (
             <li key={index} className="list-group-item">

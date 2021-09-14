@@ -22,7 +22,6 @@ const Products = () => {
   }, []);
   return (
     <>
-      <h2 className="text-center"> All Products</h2>
       <div className="row">
         {products.map((product, index) => (
           <ProductItem key={index} product={product} />
